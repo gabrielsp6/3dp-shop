@@ -409,3 +409,20 @@ color: rgb(0, 0, 0);
 .address-input{
    
 }
+
+.order-card{
+   margin: 10px;
+   width: 800px;
+}
+.fa-trash{
+   font-size: 20px;
+}
+
+#delete-order{
+   width: 260px;
+   border-radius: 10px;
+}
+#delete-order:hover{
+   background-color: rgb(204, 204, 204);
+
+}

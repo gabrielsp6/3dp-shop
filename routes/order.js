@@ -20,27 +20,6 @@ router.use(bodyParser.urlencoded({
   router.use(bodyParser.json());
   
 
-// middleware that is specific to this router
-
-// define the home page route
-router.get('/', (req, res, next) => {
-  Order.find()
-  .select('productsWithQuantity accepted _id')
-  .exec()
-  .then(docs => {
-      res.status(200).json({
-        order : {
-            order: docs
-        }
-      
-       });
-  })
-  .catch(err => {
-      res.status(500).json({
-          error: err
-      })
-  })
-})
 
 router.post('/', (req, res, next) => {
     // console.log(req.body)
@@ -48,27 +27,7 @@ router.post('/', (req, res, next) => {
     const productsIds = req.body.id;
     const quantities = req.body.quantity;
     const titles = req.body.title;
-    // titles =  () => {
-    //     let titlesCopy = []
 
-    //     for(let i = 0; i < productsIds.length; i++) {
-    //         console.log(Product.findById(productsIds[i])
-    //         .select('title')
-    //         .exec()
-    //         .then(doc => {
-    //             console.log(doc.title)
-    //             console.log("adding to title list")
-    //             titlesCopy.push(doc.title)
-                
-    //         })
-    //         )
-            
-    //     }
-    //     return titlesCopy;
-    // }
-
-    // console.table(titles)
-  
     for( let i = 0; i < productsIds.length; i++) {
         productsWithQuantity.push({ 
             product: productsIds[i],
@@ -94,50 +53,59 @@ router.post('/', (req, res, next) => {
 
     console.log('order saved')
 
-
-    // .then( result => {
-//       console.log(result);
-//       res.status(201).json({
-//           message: 'order stored',
-//           createdOrder: {
-//               _id: result._id,
-//               product: result.product,
-//               quantity: result.quantity
-//           },
-//           request: {
-//               type: 'GET',
-//               url: "http://localhost:3000/orders" + result._id
-//           }
-//       });
-
-//       return 
-//   })
-  // .catch(err => {
-  //     res.status(500).json({
-  //         message: "Product not found",
-  //         err: err
-  //     })
-  // });
 })
 
+router.get('/all', (req, res, next) => {
+    Order.find()
+    .select('_id totalPrice productsWithQuantity address status accepted')
+    .exec()
+    .then(docs => {
+    res.render(path.join(__dirname, '..', 'views', 'orders.ejs'), { orders: docs})
+  
+    })
+    .catch( err => {
+        console.log(err);
+        res.status(500).json({
+            error:err
+        })
+    })
+  })
 
+  router.get("/:orderId", (req, res, next) => {
+    Order.findById(req.params.orderId)
+      .exec()
+      .then(order => {
+        if (!order) {
+          return res.status(404).json({
+            message: "Order not found"
+          });
+        }
+        res.render(path.join(__dirname, '..', 'views', 'orderpage.ejs'), { order: order } )
+      })
+      .catch(err => {
+        res.status(500).json({
+          error: err
+        });
+      });
+  });
+  
 
-//   router.post('/order', function(req, res) {
-//   ordersArray.push({id: req.body.id, qty: req.body.qty, price: req.body.price})
-//   console.log('### ORDERS ###')
-//   console.table(ordersArray)
-//   cartArray = []
-//   res.sendFile(path.join(__dirname, '.', 'views', 'orderinfo.html'));
-// });
-
-
-
-// router.post('*', function(req, res) {
-//   res.send(JSON.stringify(req.body))
-// });
-
-// router.get('/info', function(req, res) {
-//   res.sendFile(path.join(__dirname, '..', 'views', 'orderinfo.html'))
-// });
+  
+  router.delete("/:orderId", (req, res, next) => {
+    Order.remove({ _id: req.params.orderId })
+      .exec()
+      .then(result => {
+        res.status(200).json({
+          message: "Order deleted",
+        });
+        console.log('DELETED ORDER')
+      })
+      .catch(err => {
+        res.status(500).json({
+          error: err
+        });
+      });
+  });
+  
 
 export default router;

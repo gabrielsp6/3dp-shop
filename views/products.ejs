@@ -30,7 +30,7 @@
                     <div class="product" data-name="p-<%=i%>"> 
                             <img src="/img/<%=value.image%>"  alt="product image" class="product-image">
                             <% i++; %>                 
-                            <li > <%= JSON.stringify(value.title) %> </li>  
+                            <li > <%= JSON.stringify(value.title).substr(1, JSON.stringify(value.title).length-2) %> %> </li>  
                     </div> 
             <% } %>
             </div>
@@ -49,7 +49,7 @@
             <div class="preview" data-target="p-<%=i%>">
                <i class="fas fa-times"></i>
               
-               <h3><%= JSON.stringify(value.title) %></h3>
+               <h3><%= JSON.stringify(value.title).substr(1, JSON.stringify(value.title).length-2) %></h3>
 
                <img src="/img/<%=i%>.png"  alt="product image" class="product-image">
                <div class="stars">

@@ -28,30 +28,10 @@ router.get('/', (req, res, next) => {
   .select('title price _id description image')
   .exec()
   .then(docs => {
-          const response = {
-              count: docs.length,
-              products: docs.map(doc => {
-                  return {
-                      title: doc.title,
-                      price: doc.price,
-                      description: doc.description,
-                      _id: doc._id,
-                      request: {
-                          type: 'GET',
-                          url: 'http://localhost:3000/products/' + doc._id
-                      }
-                  }
-                  
-              })
-
-             
-          }
         //   console.log(docs)
-
-       
       // if(docs.length >= 0) {
         //   res.status(200).json(response);
-          res.render(path.join(__dirname, '..', 'views', 'products.ejs'), { newProductList: docs })
+    res.render(path.join(__dirname, '..', 'views', 'products.ejs'), { newProductList: docs })
       // } else {
       //     res.status(404).json({
       //         message: "no entries found"
