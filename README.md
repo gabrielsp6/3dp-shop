@@ -12,6 +12,7 @@ simple 3d printing shop management app
  
  <h4> Current features: </h4>    
  
- [ ] 111
+ -[ ] 111
+ -[x] 111
  <h4> Work in progress features: </h4>    
  - 
