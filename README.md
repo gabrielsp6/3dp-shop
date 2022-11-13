@@ -16,6 +16,5 @@ simple 3d printing shop management app
 - [x] Latest orders displayed on the main page
 
  <h4> Work in progress features: </h4>    
-- [ ] cc
-- [ ] bbb
-- [ ] aaa
+- [ ] Unchecked
+- [x] Checked
