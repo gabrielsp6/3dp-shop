@@ -18,6 +18,6 @@ simple 3d printing shop management app
 - [x] Product card shows up in a quick view on the shop page
 
  <h4> Work in progress features: </h4>    
-- [ ] User/admin login
+- [x] User/admin login
 - [ ] Set order status
 - [ ] Admin can edit orders
