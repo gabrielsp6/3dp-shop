@@ -51,6 +51,14 @@ router.post('/', (req, res, next) => {
 
     order.save()
 
+    // EMPTY CART WHEN ORDER IS PLACED - DOES NOT WORK PROPERLY
+    // fetch('http://localhost:3000/cart/' , {
+    //   method: 'DELETE',
+    //   })
+    //   .then( () => {
+    //       console.log('##################user placed order and cart was cleared ###############');
+    //   })
+
     console.log('order saved')
 
 })
@@ -62,6 +70,37 @@ router.get('/all', (req, res, next) => {
     .then(docs => {
     res.render(path.join(__dirname, '..', 'views', 'orders.ejs'), { orders: docs})
   
+    })
+    .catch( err => {
+        console.log(err);
+        res.status(500).json({
+            error:err
+        })
+    })
+  })
+
+  router.get('/alljson', (req, res, next) => {
+    Order.find()
+    .select('_id totalPrice productsWithQuantity address status accepted')
+    .exec()
+    .then(docs => {
+      console.log(docs.length);
+      const response = {
+        
+        orders: docs.map( doc => {
+          return {
+            _id: doc._id,
+            price: doc.totalPrice
+          }
+        })
+      }
+
+    //get last 5 orders, return reverse array (we need last order to be first displayed in in index)
+     let latestOrders = {
+        orders: response.orders.slice(response.orders.length-5).reverse()
+      }
+      console.log(latestOrders)
+      res.status(200).json(latestOrders);
     })
     .catch( err => {
         console.log(err);
@@ -106,6 +145,45 @@ router.get('/all', (req, res, next) => {
         });
       });
   });
+
+
+  router.patch("/:orderId", (req, res, next) => {
+    const newAddress = req.body;
+    const id = req.params.orderId;
+    try {
+      const id = req.params.orderId;
+    } catch (error) {
+      console.log(error.message)
+    }
+
+    console.log(id)
+    console.log(newAddress)
+    // const updateOps = {};
+    // for (const ops of req.body) {
+    //   updateOps[ops.propName] = ops.value;
+    // }
+
+    const updateOps = {};
+    Order.update({ _id: id }, { $set: {address: newAddress} })
+      .exec()
+      .then(result => {
+        res.status(200).json({
+            message: 'order updated',
+            request: {
+                type: 'GET',
+                url: 'http://localhost:3000/order/' + id
+            }
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({
+          error: err
+        });
+      });
+  });
+
+
   
 
 export default router;

@@ -1,82 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" 
-    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/styles.css">
     <title>Products page</title>
 </head>
+
 <body>
     <div class="w-100 bg-light d-flex align-items-center justify-content-center p-3">
-        <h1> Available 3d models</h1>  
+        <h1> Available 3d models</h1>
         <a href="/cart">
             <i class="fa-solid fa-cart-shopping shopping-cart justify-self-end"></i>
         </a>
         <a href="/">
             <i class="fa fa-home shopping-cart" aria-hidden="true"></i>
         </a>
-    </div >
+    </div>
 
-<!-- CREATE A CARD FOR EVERY PRODUCT -->
-        <% let i = 1 %>
+    <% let i = 1 %>
     <div class="container">
-            <div class="products-container">
-            <% for(const [key, value] of Object.entries(newProductList)) {%> 
-                    <div class="product" data-name="p-<%=i%>"> 
-                            <img src="/img/<%=value.image%>"  alt="product image" class="product-image">
-                            <% i++; %>                 
-                            <li > <%= JSON.stringify(value.title).substr(1, JSON.stringify(value.title).length-2) %> %> </li>  
-                    </div> 
-            <% } %>
+        <div class="products-container">
+            <% for(const [key, value] of Object.entries(newProductList)) {%>
+            <div class="product" data-name="p-<%=i%>">
+                <img src="/img/<%=value.image%>" alt="product image" class="product-image">
+                <% i++; %>
+                <li> <%= JSON.stringify(value.title).substr(1, JSON.stringify(value.title).length-2) %> %> </li>
             </div>
+            <% } %>
         </div>
-    </div> 
-        <!-- <form method="GET" action="/products/">
-            <input type="text" id="id" name="id">
-            <button>go to product page</button>
-        </form> -->
+    </div>
+    </div>
 
-        <!-- GENERATE PREVIEW FOR EVERY PRODUCT -->
-        <%  i = 1 %>
-        <div class="products-preview">
+    <%- include("partials/footer"); -%>
+    <%  i = 1 %>
+    <div class="products-preview">
 
-            <% for(const [key, value] of Object.entries(newProductList)) {%> 
-            <div class="preview" data-target="p-<%=i%>">
-               <i class="fas fa-times"></i>
-              
-               <h3><%= JSON.stringify(value.title).substr(1, JSON.stringify(value.title).length-2) %></h3>
+        <% for(const [key, value] of Object.entries(newProductList)) {%>
+        <div class="preview" data-target="p-<%=i%>">
+            <i class="fas fa-times"></i>
 
-               <img src="/img/<%=i%>.png"  alt="product image" class="product-image">
-               <div class="stars">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star-half-alt"></i>
-                  <span>( 250 )</span>
-               </div>
-               <% i++; %> 
-               <p><%= JSON.stringify(value.description) %> </p>
-               <div class="price">$<%= JSON.stringify(value.price) %></div>
-               <div class="buttons">
+            <h3><%= JSON.stringify(value.title).substr(1, JSON.stringify(value.title).length-2) %></h3>
+
+            <img src="/img/<%=i%>.png" alt="product image" class="product-image">
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+                <span>( 250 )</span>
+            </div>
+            <% i++; %>
+            <p><%= JSON.stringify(value.description) %> </p>
+            <div class="price">$<%= JSON.stringify(value.price) %></div>
+            <div class="buttons">
                 <!-- ADD ITEM IN CART  -->
                 <form action="/cart/" method="post">
                     <label for="quantity">Quantity</label>
                     <input type="number" name="quantity" id="quantity" value="1">
-                    <input type="text" name="id" value="<%=value.id%>" readonly class = "hidden">
+                    <input type="text" name="id" value="<%=value.id%>" readonly class="hidden">
                     <button class="cart" type="submit">Add to cart</button>
                 </form>
-               </div>      
             </div>
-            <% } %>
-         
-        
+        </div>
+        <% } %>
 
-   <script src="../js/products-page.js"></script>
+
+
+        <script src="../js/products-page.js"></script>
+
 </body>
+
 </html>
