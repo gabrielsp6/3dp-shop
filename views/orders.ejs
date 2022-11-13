@@ -1,23 +1,24 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" 
-    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-     integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-     <link rel="stylesheet" href="/styles.css">
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/styles.css">
     <title>Orders </title>
 </head>
+
 <body>
- 
-     <div class="w-100 bg-light d-flex align-items-center justify-content-center">
+
+    <div class="w-100 bg-light d-flex align-items-center justify-content-center">
         <h1>Shopping cart</h1>
         <a href="/products">
             <i class="fa-solid fa-shop justify-self-end shopping-cart"></i>
@@ -27,42 +28,35 @@
         </a>
     </div>
 
- 
-    <% for(const [key, value] of Object.entries(orders)) {%> 
-        <div class="orders-container">
-      
-            <div class="order-card border"> 
-                <div>
-                    <h4 class="order-id">
-                        Order with id <%= value.id %> 
-                    </h4>
-                    <ul>
 
-                        <%= value.productsWithQuantity.title%>
-                        <% for(const [orderKey, orderValue] of Object.entries(value.productsWithQuantity)) {%> 
-                            <li>
-                               <%= orderValue.quantity %> X <%= orderValue.title %> 
-                            </li>
-                            <% } %>
-                    
-                </div>
-                    </ul>
-                    <h5>Total price: <%= value.totalPrice %> </h5>
-                    <h5>Address: <%= value.address %> </h5>
-                   
-
-                    <a href="../order/<%= value.id %>"> view/edit order info</a>
-       
-
-
+    <% for(const [key, value] of Object.entries(orders)) {%>
+    <div class="orders-container">
+        <div class="order-card border">
+            <div>
+                <h4 class="order-id">
+                    Order with id <%= value.id %>
+                </h4>
+                <ul>
+                    <%= value.productsWithQuantity.title%>
+                    <% for(const [orderKey, orderValue] of Object.entries(value.productsWithQuantity)) {%>
+                    <li>
+                        <%= orderValue.quantity %> X <%= orderValue.title %>
+                    </li>
+                    <% } %>
             </div>
-            
+            </ul>
+            <h5>Total price: <%= value.totalPrice %> </h5>
+            <h5>Address: <%= value.address %> </h5>
+            <a href="../order/<%= value.id %>"> view/edit order info</a>
+
         </div>
-          
-        <% } %>
-        
+
     </div>
 
-    <script src="../js/order-page.js"></script>
+    <% } %>
+
+    </div>
+
+
 </body>
 </html>

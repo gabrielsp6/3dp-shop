@@ -358,7 +358,7 @@ li {
     background: rgb(175,170,198);
     background: linear-gradient(0deg, rgba(175,170,198,1) 0%, rgba(252,251,255,1) 49%, rgba(248,249,250,1) 100%);
     margin: 0px;
-    height: 100%;
+ 
 }
 
 .latest-orders{
@@ -407,7 +407,7 @@ color: rgb(0, 0, 0);
    margin:20px;
 }
 .address-input{
-   
+   width: 25%;
 }
 
 .order-card{
@@ -424,5 +424,41 @@ color: rgb(0, 0, 0);
 }
 #delete-order:hover{
    background-color: rgb(204, 204, 204);
+   cursor: pointer;
 
+}
+
+#delete-cart{
+   width: 260px;
+   border-radius: 10px;
+   margin: 20px;
+   margin-bottom: 100px;
+}
+#delete-cart:hover{
+   background-color: rgb(204, 204, 204);
+
+}
+
+footer{
+   position: absolute;
+   bottom: 0px;
+   width: 100%;
+   text-align: center;
+}
+
+#content {
+   padding-top : 121px;
+   width : 100%;
+   background-color: green;
+   display: inline-block;
+}
+#footer {
+   width: 100%;
+   height : 60px;
+   background-color:grey;
+   display: inline-block;
+}
+
+.cults-logo{
+   width: 35px;
 }
