@@ -84,8 +84,9 @@ router.get('/all', (req, res, next) => {
     .select('_id totalPrice productsWithQuantity address status accepted')
     .exec()
     .then(docs => {
+      console.log(docs.length);
       const response = {
-        // count: docs.length,
+        
         orders: docs.map( doc => {
           return {
             _id: doc._id,
@@ -93,7 +94,13 @@ router.get('/all', (req, res, next) => {
           }
         })
       }
-      res.status(200).json(response);
+
+    //get last 5 orders, return reverse array (we need last order to be first displayed in in index)
+     let latestOrders = {
+        orders: response.orders.slice(response.orders.length-5).reverse()
+      }
+      console.log(latestOrders)
+      res.status(200).json(latestOrders);
     })
     .catch( err => {
         console.log(err);

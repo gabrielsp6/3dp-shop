@@ -14,9 +14,7 @@ import exp from 'constants'
 
 dotenv.config()
 
-console.log(process.env.DB_PASS)
-
-mongoose.connect('mongodb+srv://gabrielpojar6:' + process.env.DB_PASS + '@cluster0.qo5bxby.mongodb.net/3dpshop?retryWrites=true&w=majority', {
+mongoose.connect(process.env.CONNECT_URI, {
   usenewUrlParser: true,
   useUnifiedTopology: true,
 })
