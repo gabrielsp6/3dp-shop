@@ -12,12 +12,13 @@ simple 3d printing shop management app
  
  <h4> Current features: </h4>    
  
-- [x] Latest orders displayed on the main page
-- [x] Items can be added to cart, cart can be cleared
-- [x] Order can be sent after items added in cart, orders can be deleted individually from admin zone
-- [x] Product card shows up in a quick view on the shop page
+- ✔️ Latest orders displayed on the main page
+- ✔️ Items can be added to cart, cart can be cleared
+- ✔️ Order can be sent after items added in cart, orders can be deleted individually from admin zone
+- ✔️ Product card shows up in a quick view on the shop page
 
- <h4> Work in progress features: </h4>    
-- [ ] Admin can edit orders
-- [ ] Set order status
-- [ ] User/admin login
+ <h4> Work in progress features: </h4>   
+ 
+- ❌ Admin can edit orders
+- ❌ Set order status
+- ❌ User/admin login
