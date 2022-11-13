@@ -8,3 +8,10 @@ simple 3d printing shop management app
 2. create a variable named "CONNECT_URI" and add your mongodb connect uri as its value
 3. start the server
 
+#########################################################################################################################################################################
+ 
+ <h4> Current features: </h4>    
+ 
+ [] 111
+ <h4> Work in progress features: </h4>    
+ - 
