@@ -47,31 +47,6 @@ router.get('/', (req, res, next) => {
 })
 
 
-router.get('/:productId', (req, res, next) => {
-    const id = req.params.productId;
-    Product.findById(id)
-    .select('name price _id description')
-    .exec()
-    .then(doc => {
-        console.log("from database", doc);
-        if(doc){
-            res.status(200).json({
-                product: doc,
-                request: {
-                    type: "GET",
-                    url: 'http://localhost:3000/products/' + req.params.productId
-                }
-            });
-        } else {
-            res.status(404).json({message:'No valid entry found for id!'});
-        }
-       
-    })
-    .catch(err => {
-        console.log(err);
-        res.status(500).json({error:err})
-    });
-})
 
 router.post('/', (req, res, next) => {
   
@@ -113,37 +88,6 @@ router.post('/', (req, res, next) => {
 
  
 })
-
-
-// router.get('/', (req, res, next) => {
-//     res.render(path.join(__dirname, '..', 'views', 'products.ejs'), { newProductList: productList })
-   
-// })
-
-//not working - needs investigation
-// router.get('/:id', (req, res) => {
-//   res.render(path.join(__dirname, '..', 'views', 'product.ejs'), {id : req.params.id})
-// })
-
-// router.post('/:quantity', (req, res) => {
-//   console.log(`user added item in cart, quantity ${req.body.quantity}`)
-//   res.send(req.body.quantity)
-   
-// })
-
-
-// router.get('/:id', (req, res) => {
-//   console.log(req.params.id)
-//   // res.send(`user accessed product with ${req.params.id}`)
-//   res.render(path.join(__dirname, '..', 'views', 'product.ejs'), {id : req.params.id})
-   
-// })
-
-
-// router.get('/:id', (req, res) => {
-//   res.render(path.join(__dirname, '..', 'views', 'product.ejs'), {id : req.params.id})
-   
-// })
 
 
 export default router;
