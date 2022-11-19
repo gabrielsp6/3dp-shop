@@ -22,3 +22,5 @@ simple 3d printing shop management app
 - ❌ Admin can edit orders
 - ❌ Set order status
 - ❌ User/admin login
+- ❌ Used material tracker/manager
+
