@@ -358,7 +358,11 @@ li {
     background: rgb(175,170,198);
     background: linear-gradient(0deg, rgba(175,170,198,1) 0%, rgba(252,251,255,1) 49%, rgba(248,249,250,1) 100%);
     margin: 0px;
- 
+    height: 100vh;
+}
+
+.admin-zone{
+   margin-bottom: 25vh;
 }
 
 .latest-orders{
